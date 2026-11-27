@@ -4,7 +4,9 @@ import java.sql.*;
 
 public class Database {
 
-    private static final String DB_URL = "jdbc:sqlite:shop.db";
+    // The database file defaults to shop.db in the folder you run the app from.
+    // Tests use -Dshop.db=somefile.db so they never touch your real data.
+    private static final String DB_URL = "jdbc:sqlite:" + System.getProperty("shop.db", "shop.db");
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(DB_URL);

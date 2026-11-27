@@ -304,7 +304,8 @@ public class BillingManager {
     }
 
     public static void viewBillHistory() {
-        String sql = "SELECT * FROM bills ORDER BY bill_date DESC LIMIT 20";
+        // Newest first. Sorted by id because bill_date is text like 25-11-2026 (it would sort wrongly).
+        String sql = "SELECT * FROM bills ORDER BY id DESC LIMIT 20";
         try (Connection conn = Database.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
